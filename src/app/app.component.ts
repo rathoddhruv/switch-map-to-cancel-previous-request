@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
 
   buttonClick() {
     // debugger
-    return timer(100,10).pipe(
+    return Observable.create().pipe(
     // return this.searchString.pipe(
       switchMap(y => {
          return this.http.get("https://jsonplaceholder.typicode.com/users").pipe(map(
