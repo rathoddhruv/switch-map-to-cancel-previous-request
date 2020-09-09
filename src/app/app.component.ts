@@ -8,9 +8,9 @@ import {
   switchMap,
   map,
   take,
-  delay,
-  from
+  delay
 } from "rxjs/operators";
+import { from,of } from 'rxjs';
 import "rxjs/add/observable/from";
 import { HttpClient } from "@angular/common/http";
 import { timer } from "rxjs";
@@ -40,24 +40,15 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.switch$ = this.searchString$.pipe(
-    //   switchMap(x =>
-    //     this.http.get("https://jsonplaceholder.typicode.com/users").pipe(
-    //       delay(1000),
-    //       map(y => `outer: ${x}, inner: ${y[0]}`)
-    //     )
-    //   )
-    // );
 
-    // this.buttonClick().subscribe(x => (this.switch$ = x));
   }
 
   buttonClick() {
     // debugger
-    return Observable.create().pipe(
+    return from([1]).pipe(
     // return this.searchString.pipe(
       switchMap(y => {
-         return this.http.get("https://jsonplaceholder.typicode.com/users").pipe(map(
+         return this.http.get("https://jsonplaceholder.typicode.com/users").pipe(delay(2000),map(
            z => {
              return z;
            }
