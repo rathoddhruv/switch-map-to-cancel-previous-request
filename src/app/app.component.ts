@@ -32,11 +32,6 @@ export class AppComponent implements OnInit {
 
   updateSearch(value) {
     this.searchString.next(value);
-    this.buttonClick().subscribe(x => {
-      // debugger
-      console.log(x);
-      this.switch = JSON.stringify(x);
-    });
   }
 
   ngOnInit() {
@@ -46,7 +41,6 @@ export class AppComponent implements OnInit {
   buttonClick() {
     // debugger
     return from([1]).pipe(
-    // return this.searchString.pipe(
       switchMap(y => {
          return this.http.get("https://jsonplaceholder.typicode.com/users").pipe(delay(2000),map(
            z => {
